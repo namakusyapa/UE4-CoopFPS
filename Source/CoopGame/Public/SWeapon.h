@@ -7,6 +7,7 @@
 #include "SWeapon.generated.h"
 
 class USkeletalMeshComponent;
+class UDamageType;
 
 UCLASS()
 class COOPGAME_API ASWeapon : public AActor
@@ -22,11 +23,14 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
-	USkeletalMeshComponent* meshComp;
+	USkeletalMeshComponent* MeshComp;
 
 
 	UFUNCTION(BlueprintCallable, Category="Weapon")
 	void Fire();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon")
+	TSubclassOf<UDamageType> damageType;
 
 public:	
 	// Called every frame
